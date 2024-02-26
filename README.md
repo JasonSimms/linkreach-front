@@ -1,5 +1,5 @@
 # LinkReach (formerly My Bitly) FrontEnd UI & Admin
------DEPLOYED on Firebase---- [LINK]("https://link-reach.web.app")
+-----DEPLOYED on Firebase---- [Visit Link Reach](https://link-reach.web.app)
 This is a front end react UI for interacting with my-bitly API [INSERT LINK HERE]('INSERT LINK HERE')
 
 Problem : You have mass emailed your CV out and want to know if anyone is looing at your projects or CV.
