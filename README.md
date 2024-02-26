@@ -2,10 +2,9 @@
 
 This is a front end react UI for interacting with my-bitly API [INSERT LINK HERE]('INSERT LINK HERE')
 
-It should provide 3 purposes:
-- [ ] Provide a demonstration of the API uses as a demo w/ fake data (FUZZ DATA NEEDED)
-- [ ] Provide actual consumption methods of the my-bitly API for myself (AUTH NEEDED)
-- [ ] Provide user specific functionality of my-bitly(my-bitly v2)
+Problem : You have mass emailed your CV out and want to know if anyone is looing at your projects or CV.
+
+Solution: LinkReach generates unique shortened URL's for you to use as Hyperlinks in email or embedded in .PDF. The unique urls are redirected and capture provided tracker data.  This can be the name of who you sent it or any string.  When LinkReach gets a request it logs the visit and any attached tags for you to view and the visitor gets immediately redirected to your desired link.
 
 
 
@@ -25,31 +24,20 @@ It should provide 3 purposes:
 
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a vite project. And currently not deployed.  TO view locally clone repository navigate in and use 
 
-Currently, two official plugins are available:
+## Local Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Follow these steps to set up the project for local development:
 
-## Expanding the ESLint configuration
+1. Clone the repository to your local machine using Git. Open your terminal and run:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+git clone https://github.com/JasonSimms/linkreach-front.git
 
-- Configure the top-level `parserOptions` property like this:
+cd linkreach
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+npm install
+
+npm run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
