@@ -24,7 +24,7 @@ Solution: LinkReach generates unique shortened URL's for you to use as Hyperlink
 
 # React + TypeScript + Vite
 
-This is a vite project. And currently not deployed.  TO view locally clone repository navigate in and use 
+This is a vite project. And not yet deployed.
 
 ## Local Development
 
