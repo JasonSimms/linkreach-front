@@ -8,6 +8,21 @@ It should provide 3 purposes:
 - [ ] Provide user specific functionality of my-bitly(my-bitly v2)
 
 
+
+### TODO
+- [x] Build Campaign Table - Heart of the app displays each Campaign and its click history. Collapsable Table
+- [ ] Build Link Form - User Input  regarding a link that will be re-used in multiple campaigns. 
+- [ ] Build Campaign Form - Let user input info and tags regarding a specific application to generate unique links
+- [ ] Build Campaign Card - Displays Generated Links for Consumption
+- [ ] Build modal editing of existing content
+- [ ] Build Error handling in modal or toast
+- [ ] Add Visualization Graph
+- [ ] Style into a flow w/ Auth add navbar
+- [ ] Add Auth
+- [ ] Add backend or mock SQL
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

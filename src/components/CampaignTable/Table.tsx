@@ -125,7 +125,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
 }
 
 
-export default function CollapsibleTable() {
+export default function CampaignTable() {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
