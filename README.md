@@ -1,5 +1,5 @@
 # LinkReach (formerly My Bitly) FrontEnd UI & Admin
-
+-----DEPLOYED on Firebase---- [LINK]("https://link-reach.web.app")
 This is a front end react UI for interacting with my-bitly API [INSERT LINK HERE]('INSERT LINK HERE')
 
 Problem : You have mass emailed your CV out and want to know if anyone is looing at your projects or CV.
@@ -10,9 +10,9 @@ Solution: LinkReach generates unique shortened URL's for you to use as Hyperlink
 
 ### TODO
 - [x] Build Campaign Table - Heart of the app displays each Campaign and its click history. Collapsable Table
-- [ ] Build Link Form - User Input  regarding a link that will be re-used in multiple campaigns. 
-- [ ] Build Campaign Form - Let user input info and tags regarding a specific application to generate unique links
-- [ ] Build Campaign Card - Displays Generated Links for Consumption
+- [x] Build Link Form - User Input  regarding a link that will be re-used in multiple campaigns. 
+- [x] Build Campaign Form - Let user input info and tags regarding a specific application to generate unique links
+- [x] Build Campaign Card - Displays Generated Links for Consumption
 - [ ] Build modal editing of existing content
 - [ ] Build Error handling in modal or toast
 - [ ] Add Visualization Graph
