@@ -13,17 +13,49 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import TroubleshootIcon from "@mui/icons-material/Troubleshoot";
 
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useAuth } from "../../Context/AuthContext";
 
 const pages = [
   { title: "Home", destination: "/" },
   { title: "StoryBoard", destination: "/storyboard" },
   { title: "Create", destination: "/create" },
 ];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+interface AuthUser {
+  uid?: string;
+  email: string;
+  displayName?: string;
+  photoUrl?: string;
+}
 
 function NavBar() {
   const navigate = useNavigate();
+  const { currentUser, logout } = useAuth();
+  console.log("currentUser", currentUser);
+  const settings = currentUser ? [
+    {
+      title: "Profile",
+      action: () => {
+        console.log("Profile");
+        // logout();
+      },
+    },
+    { title: "Account", action: () => console.log("account") },
+    { title: "Dashboard", action: () => console.log("dashboard") },
+    { title: "Logout", action: () => {
+      logout() 
+      navigate("/home");
+    }},
+  ] : [ {
+    title: "Login",
+    action: () => {
+      console.log("Login");
+      navigate("/login");
+    },
+  },];
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -47,7 +79,7 @@ function NavBar() {
   };
 
   const handlePageNavigation = (destination: string) => () => {
-    console.log('destination', destination)
+    console.log("destination", destination);
     navigate(destination);
   };
 
@@ -110,9 +142,7 @@ function NavBar() {
                   key={page.title}
                   onClick={handlePageNavigation(page.destination)}
                 >
-                  <Typography textAlign="center">
-                  {page.title}
-                  </Typography>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -136,7 +166,7 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            LinkReach
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -149,11 +179,13 @@ function NavBar() {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt={currentUser?.email}
+                  src={currentUser?.photoUrl || undefined}
+                />{" "}
               </IconButton>
             </Tooltip>
             <Menu
@@ -173,8 +205,8 @@ function NavBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.title} onClick={setting.action}>
+                  <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

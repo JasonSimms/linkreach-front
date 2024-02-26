@@ -1,57 +1,50 @@
 import * as React from "react";
 import "./App.css";
 import { StyledEngineProvider } from "@mui/material/styles";
-import { ErrorPage, NavBar } from "./components";
+import { ErrorPage, NavBar, LogInForm } from "./components";
 import HomeLayout from "./layouts/Home";
 import Storyboard from "./components/Storyboard";
 
-import { initializeApp } from "firebase/app";
-const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) || null;
-initializeApp(firebaseConfig);
+import { AuthProvider,
+// useAuth
+ } from "./Context/AuthContext";
 
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
-  useLocation,
-  Navigate,
+  // useLocation,
+  // Navigate,
 } from "react-router-dom";
 
 // import { AuthProvider } from "./contexts/AuthContext";
 
 const NavbarWrapper = () => {
-  const location = useLocation();
-  // const { authLogin } = /* some auth state provider */
-  // const authLogin = undefined;
-  const authLogin = { user: "user"};
+  // const location = useLocation();
+  // const { currentUser } = useAuth();
 
-  // if (authLogin === undefined) {
-  //   throw Error("No Auth Login Available"); // or loading indicator/spinner/etc
+  // if (currentUser) {
+  //   return (
+  //     <>
+  //       <NavBar />
+  //       <Outlet />
+  //     </>
+  //   );
+  // } else {
+  //   console.log('location', location)
+  //   return (
+  //     <>
+  //       <NavBar />
+
+  //     </>
+  //   )
   // }
-   // return authLogin ? (
-  //   <Outlet />
-  // ) : (
-  //   <Navigate to="/login" replace state={{ from: location }} />
-  // );
-
-  if (authLogin) {
-    return (
-      <>
-        <NavBar />
-        <Outlet />
-      </>
-    );
-  } else {
-    console.log('location', location)
-
-    return <Navigate to="/" replace/>;
-  }
-  // return (
-  // <div>
-  //     <NavBar/>
-  //     <Outlet/>
-  // </div>
-  // )
+  return (
+  <div>
+      <NavBar />
+      <Outlet/>
+  </div>
+  )
 };
 
 const router = createBrowserRouter([
@@ -60,7 +53,11 @@ const router = createBrowserRouter([
     element: <NavbarWrapper />,
     children: [
       {
-        path: "/", // yes, again
+        path: "/", 
+        element: <HomeLayout />,
+      },
+      {
+        path: "/home",
         element: <HomeLayout />,
       },
       {
@@ -71,13 +68,14 @@ const router = createBrowserRouter([
         path: "/create",
         element: <h1>Hello CREATE!</h1>,
       },
+     
     ],
     errorElement: <ErrorPage />,
   },
-  // {
-  //   path: "/storyboard",
-  //   element: <Storyboard />,
-  // },
+  {
+    path: "/login",
+    element: <LogInForm />,
+  },
   // {
   //   path: "/help",
   //   element: <DumbBar/>,
@@ -93,7 +91,9 @@ function App() {
   return (
     <React.StrictMode>
       <StyledEngineProvider injectFirst>
-        <RouterProvider router={router} />
+        <AuthProvider>
+          <RouterProvider router={router} />
+          </AuthProvider>
       </StyledEngineProvider>
     </React.StrictMode>
   );
