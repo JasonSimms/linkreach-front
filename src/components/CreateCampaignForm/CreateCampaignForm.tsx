@@ -4,6 +4,7 @@
 * User provides a name or other tracking data and tags to generate unqiue links for use in a campaign.
 * This is a simple form that takes in a name but is optional, and selects links
 *
+* DESIRED OUTPUT FROM FORM: { user / campaign name, referrence, notes, links[] }
 */
 
 import React from "react";
@@ -13,7 +14,7 @@ import {
   Button,
   TextareaAutosize,
   Box,
-  FormGroup, FormControlLabel
+  FormGroup, FormControlLabel, Paper
 } from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
 
@@ -22,14 +23,29 @@ const myLinks = ["github" , "MyCoolApp", "Sick Coding Sample", "DefinitelyNotARi
 
 
 const CreateCampaignForm = () => {
+
+    const getLinksToInclude = (arr: string[]) => {
+        console.log('here', arr)
+        const linksToInclude = [];
+        for (let i = 0; i < arr.length; i++) {
+            console.log('type of check', typeof arr[i])
+            if (arr[i] === "on") {
+                linksToInclude.push(myLinks[i]);
+            }
+        }
+        return linksToInclude;
+    }
   
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+        const checkBoxInput = data.getAll("links")
+        const links = getLinksToInclude(checkBoxInput).filter(link => typeof link === 'string');
         console.log({
             campaignName: data.get("campaignName"),
             referrence: data.get("referrence"),
             notes: data.get("notes"),
+            links: links,
         });
 
         // Reset the form
@@ -37,7 +53,7 @@ const CreateCampaignForm = () => {
     };
 
   return (
-    <Box sx={{ boxShadow: 3, padding: "5px" }}>
+    <Paper elevation={3}>
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit}>
           <TextField
@@ -46,6 +62,7 @@ const CreateCampaignForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
+            placeholder="Who will recieve this?"
           />
           <TextField
             name="referrence"
@@ -53,10 +70,11 @@ const CreateCampaignForm = () => {
             variant="outlined"
             fullWidth
             margin="normal"
+            placeholder="Job Link or Document URL"
           />
-          <FormGroup>
+          <FormGroup >
             {myLinks.map((link) => (
-               <FormControlLabel control={<Checkbox defaultChecked />} label={link} />
+               <FormControlLabel key={link} name="links" control={<Checkbox defaultChecked />} label={link} />
             ))}
           </FormGroup>
           <TextareaAutosize
@@ -77,7 +95,7 @@ const CreateCampaignForm = () => {
           </Box>
         </form>
       </Container>
-    </Box>
+    </Paper>
   );
 };
 

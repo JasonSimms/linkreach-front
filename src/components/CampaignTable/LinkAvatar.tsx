@@ -63,6 +63,7 @@ export default function LinkAvatar(props: {link: string}) {
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         variant="dot"
+        key={props.link}
       >
             <Avatar sx={{bgcolor:stringToColor(props.link)}}>{props.link.substring(0,3)}</Avatar>
             </StyledBadge>
