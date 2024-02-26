@@ -1,43 +1,74 @@
 import * as React from "react";
 import "./App.css";
 import { StyledEngineProvider } from "@mui/material/styles";
-import {ErrorPage, NavBar} from "./components";
+import { ErrorPage, NavBar } from "./components";
 import HomeLayout from "./layouts/Home";
 import Storyboard from "./components/Storyboard";
 
 import {
   createBrowserRouter,
-  RouterProvider, Outlet
+  RouterProvider,
+  Outlet,
+  useLocation,
+  Navigate,json
 } from "react-router-dom";
 
 
-const NavbarWrapper =()=>{
-  return (
-  <div>
-      <NavBar/>
-      <Outlet/>
-  </div>
-  )
+
+const NavbarWrapper = () => {
+  const location = useLocation();
+  // const { authLogin } = /* some auth state provider */
+  // const authLogin = undefined;
+  const authLogin = { user: "user"};
+
+  // if (authLogin === undefined) {
+  //   throw Error("No Auth Login Available"); // or loading indicator/spinner/etc
+  // }
+   // return authLogin ? (
+  //   <Outlet />
+  // ) : (
+  //   <Navigate to="/login" replace state={{ from: location }} />
+  // );
+
+  if (authLogin) {
+    return (
+      <>
+        <NavBar />
+        <Outlet />
+      </>
+    );
+  } else {
+    console.log('location', location)
+
+    return <Navigate to="/" replace/>;
+  }
+  // return (
+  // <div>
+  //     <NavBar/>
+  //     <Outlet/>
+  // </div>
+  // )
 };
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <NavbarWrapper/>,
-        children:[
-             {
-                 path: "/", // yes, again
-                 element: <HomeLayout/>
-             },
-             {
-                 path: "/storyboard",
-                 element: <Storyboard/>
-             },
-             {
-              path: "/create",
-              element: <h1>Hello CREATE!</h1>
-          },
-        ]
+    element: <NavbarWrapper />,
+    children: [
+      {
+        path: "/", // yes, again
+        element: <HomeLayout />,
+      },
+      {
+        path: "/storyboard",
+        element: <Storyboard />,
+      },
+      {
+        path: "/create",
+        element: <h1>Hello CREATE!</h1>,
+      },
+    ],
+    errorElement: <ErrorPage />,
   },
   // {
   //   path: "/storyboard",
