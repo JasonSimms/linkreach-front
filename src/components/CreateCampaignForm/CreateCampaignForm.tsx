@@ -24,8 +24,7 @@ const myLinks = ["github" , "MyCoolApp", "Sick Coding Sample", "DefinitelyNotARi
 
 const CreateCampaignForm = () => {
 
-    const getLinksToInclude = (arr: string[]) => {
-        console.log('here', arr)
+    const getLinksToInclude = (arr: FormDataEntryValue[]) => {
         const linksToInclude = [];
         for (let i = 0; i < arr.length; i++) {
             console.log('type of check', typeof arr[i])
@@ -37,19 +36,19 @@ const CreateCampaignForm = () => {
     }
   
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const checkBoxInput = data.getAll("links")
-        const links = getLinksToInclude(checkBoxInput).filter(link => typeof link === 'string');
-        console.log({
-            campaignName: data.get("campaignName"),
-            referrence: data.get("referrence"),
-            notes: data.get("notes"),
-            links: links,
-        });
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const checkBoxInput: FormDataEntryValue[] = Array.from(data.getAll("links"));
+      const links = getLinksToInclude(checkBoxInput)
+      console.log({
+        campaignName: data.get("campaignName"),
+        referrence: data.get("referrence"),
+        notes: data.get("notes"),
+        links: links,
+      });
 
-        // Reset the form
-        event.currentTarget.reset();
+      // Reset the form
+      event.currentTarget.reset();
     };
 
   return (

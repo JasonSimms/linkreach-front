@@ -5,15 +5,19 @@ import { ErrorPage, NavBar } from "./components";
 import HomeLayout from "./layouts/Home";
 import Storyboard from "./components/Storyboard";
 
+import { initializeApp } from "firebase/app";
+const firebaseConfig = JSON.parse(import.meta.env.VITE_FIREBASE_CONFIG) || null;
+initializeApp(firebaseConfig);
+
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
   useLocation,
-  Navigate,json
+  Navigate,
 } from "react-router-dom";
 
-
+// import { AuthProvider } from "./contexts/AuthContext";
 
 const NavbarWrapper = () => {
   const location = useLocation();

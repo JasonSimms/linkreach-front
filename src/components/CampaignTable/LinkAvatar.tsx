@@ -1,7 +1,7 @@
-import * as React from 'react';
+// import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
-import { Avatar, Link } from "@mui/material"
+import { Avatar } from "@mui/material"
 
 //Generate a unique color for each link based on string.
 // TODO pretty up with icon or image use.

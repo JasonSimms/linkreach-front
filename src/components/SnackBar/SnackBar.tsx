@@ -12,6 +12,7 @@ export default function SimpleSnackbar() {
   };
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    console.log('why event?', event, reason)
     if (reason === 'clickaway') {
       return;
     }

@@ -13,9 +13,9 @@ interface CampaignData {
     links: string[];
 }
 
-interface CardProps {
-    campaignData: CampaignData;
-}
+// interface CardProps {
+//     campaignData: CampaignData;
+// }
 
 const campaignData: CampaignData = {
     title: "My Campaign",

@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "linkreach",
     "public": "dist",
     "ignore": [
       "firebase.json",
