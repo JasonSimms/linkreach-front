@@ -7,9 +7,10 @@ import LinksLayout from "./layouts/Links";
 import LandingLayout from "./layouts/Landing";
 import Storyboard from "./components/Storyboard";
 
-import { AuthProvider,
-// useAuth
- } from "./Context/AuthContext";
+import {
+  AuthProvider,
+  // useAuth
+} from "./Context/AuthContext";
 
 import {
   createBrowserRouter,
@@ -42,11 +43,11 @@ const NavbarWrapper = () => {
   //   )
   // }
   return (
-  <div>
+    <>
       <NavBar />
-      <Outlet/>
-  </div>
-  )
+      <Outlet />
+    </>
+  );
 };
 
 const router = createBrowserRouter([
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
     element: <NavbarWrapper />,
     children: [
       {
-        path: "/", 
+        path: "/",
         element: <LandingLayout />,
       },
       {
@@ -70,7 +71,6 @@ const router = createBrowserRouter([
         path: "/links",
         element: <LinksLayout />,
       },
-     
     ],
     errorElement: <ErrorPage />,
   },
@@ -95,7 +95,7 @@ function App() {
       <StyledEngineProvider injectFirst>
         <AuthProvider>
           <RouterProvider router={router} />
-          </AuthProvider>
+        </AuthProvider>
       </StyledEngineProvider>
     </React.StrictMode>
   );

@@ -19,7 +19,7 @@ import { useAuth } from "../../Context/AuthContext";
 
 const pages = [
   { title: "Home", destination: "/" },
-  { title: "Links", destination: "/links" , protected: true},
+  { title: "Links", destination: "/links", protected: true },
   { title: "StoryBoard", destination: "/storyboard" },
 ];
 
@@ -36,36 +36,43 @@ const navBarStyle = {
 
   color: "white",
   boxShadow: "none",
-  width: "100%",
+  // width: "100vw",
   margin: "10px 0px",
-  '@media (min-width:767px)': { padding: '1rem 1rem',  borderRadius: "99px 99px" }
+  "@media (min-width:767px)": { borderRadius: "99px 99px" },
+  "@media (min-width:955px)": { padding: "12px" },
 };
-
 
 function NavBar() {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
-  const settings = currentUser ? [
-    {
-      title: "Profile",
-      action: () => {
-        console.log("Profile");
-        // logout();
-      },
-    },
-    { title: "Account", action: () => console.log("account") },
-    { title: "Dashboard", action: () => console.log("dashboard") },
-    { title: "Logout", action: () => {
-      logout() 
-      navigate("/home");
-    }},
-  ] : [ {
-    title: "Login",
-    action: () => {
-      console.log("Login");
-      navigate("/login");
-    },
-  },];
+  const settings = currentUser
+    ? [
+        {
+          title: "Profile",
+          action: () => {
+            console.log("Profile");
+            // logout();
+          },
+        },
+        { title: "Account", action: () => console.log("account") },
+        { title: "Dashboard", action: () => console.log("dashboard") },
+        {
+          title: "Logout",
+          action: () => {
+            logout();
+            navigate("/home");
+          },
+        },
+      ]
+    : [
+        {
+          title: "Login",
+          action: () => {
+            console.log("Login");
+            navigate("/login");
+          },
+        },
+      ];
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -90,7 +97,7 @@ function NavBar() {
   };
 
   const handlePageNavigation = (destination: string) => () => {
-    console.log("destination", destination);
+    handleCloseNavMenu();
     navigate(destination);
   };
 
@@ -166,7 +173,7 @@ function NavBar() {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            // href=
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -176,6 +183,7 @@ function NavBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              userSelect: "none",
             }}
           >
             LinkReach
@@ -197,7 +205,11 @@ function NavBar() {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
                   alt={currentUser?.email}
-                  src={currentUser?.photoUrl ||  currentUser ? "https://img.kbhgames.com/2020/02/Dogecoin-Miner.jpg" : ""}
+                  src={
+                    currentUser?.photoUrl || currentUser
+                      ? "https://img.kbhgames.com/2020/02/Dogecoin-Miner.jpg"
+                      : ""
+                  }
                 />{" "}
               </IconButton>
             </Tooltip>

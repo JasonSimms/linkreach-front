@@ -1,8 +1,13 @@
 #root {
-  max-width: 90vw;
+  /* max-width: 90vw; */
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
+  @media (min-width:955px) {
+    /* padding: 12px 0px; */
+    width: 90vw;
+  }
 }
 
 body {
