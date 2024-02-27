@@ -2,12 +2,22 @@ import React from "react";
 import { Grid, Paper, Typography } from "@mui/material";
 import { CampaignTable } from "../components";
 
+const BannerStyles = {
+  fontFamily: '"Link Sans", "Arial Black", Arial, sans-serif',
+  fontSize: "clamp(32px, 8.5vmin, 88px)",
+  fontWeight: 820,
+  letterSpacing: "-0.02em",
+  lineHeight: 1.05,
+  textAlign: "left",
+  color: "rgb(210, 232, 35)",
+};
+
 const HomeLayout: React.FC = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Paper>
-          <Typography variant="h5">
+          <Typography sx={BannerStyles}>
             Customized Hyperlink Traffic Capture!
           </Typography>
           <Typography variant="h4">LinkReach</Typography>

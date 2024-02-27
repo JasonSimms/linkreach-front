@@ -4,6 +4,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import { ErrorPage, NavBar, LogInForm } from "./components";
 import HomeLayout from "./layouts/Home";
 import LinksLayout from "./layouts/Links";
+import LandingLayout from "./layouts/Landing";
 import Storyboard from "./components/Storyboard";
 
 import { AuthProvider,
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/", 
-        element: <HomeLayout />,
+        element: <LandingLayout />,
       },
       {
         path: "/home",
