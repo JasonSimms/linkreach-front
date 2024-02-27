@@ -23,12 +23,24 @@ const pages = [
   { title: "StoryBoard", destination: "/storyboard" },
 ];
 
-interface AuthUser {
-  uid?: string;
-  email: string;
-  displayName?: string;
-  photoUrl?: string;
-}
+// interface AuthUser {
+//   uid?: string;
+//   email: string;
+//   displayName?: string;
+//   photoUrl?: string;
+// }
+
+const navBarStyle = {
+  backgroundColor: "rgba(0, 0, 0, 0.8)",
+  // backgroundColor: 'primary.success',
+
+  color: "white",
+  boxShadow: "none",
+  width: "100%",
+  margin: "10px 0px",
+  '@media (min-width:767px)': { padding: '1rem 1rem',  borderRadius: "99px 99px" }
+};
+
 
 function NavBar() {
   const navigate = useNavigate();
@@ -83,7 +95,7 @@ function NavBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={navBarStyle}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <TroubleshootIcon
@@ -185,7 +197,7 @@ function NavBar() {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
                   alt={currentUser?.email}
-                  src={currentUser?.photoUrl || undefined}
+                  src={currentUser?.photoUrl ||  currentUser ? "https://img.kbhgames.com/2020/02/Dogecoin-Miner.jpg" : ""}
                 />{" "}
               </IconButton>
             </Tooltip>

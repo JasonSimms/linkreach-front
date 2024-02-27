@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid} from "@mui/material";
 import { LinkCard, LinkInputForm } from "../components";
 
 import { mockLinks } from "../Context/MockData";

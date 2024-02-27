@@ -11,7 +11,7 @@ export interface Campaign {
     campaignDescription?: string
     campaignImage?: string
     campaignIcon?: string
-    campaignLinks?: Link[] // 
+    campaignLinks?: string[] // 
     clicked?: string[]
     reach: number
     lastClick: string

@@ -7,17 +7,17 @@ import {
 } from "react";
 import { auth } from "./firebaseconfig";
 import {
-  createUserWithEmailAndPassword,
+  // createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 // import { FirebaseService } from '../services/FirestoreServices';
 // import { User } from '../models/User';
 import { getAuth } from "firebase/auth";
-import * as admin from "firebase-admin";
+// import * as admin from "firebase-admin";
 import {
   GoogleAuthProvider,
   signInWithPopup,
-  getAdditionalUserInfo,
+  // getAdditionalUserInfo,
 } from "firebase/auth";
 
 interface AuthUser {
@@ -31,11 +31,11 @@ interface AuthUser {
 interface AuthContextProps {
   currentUser: AuthUser | null;
   login: (email: string, password: string) => Promise<any>;
-  signup: (
-    email: string,
-    password: string,
-    displayName: string
-  ) => Promise<void>;
+  // signup: (
+  //   email: string,
+  //   password: string,
+  //   displayName: string
+  // ) => Promise<void>;
   logout: () => Promise<void>;
   proceedWithGooglePopup: () => Promise<void>;
   // resetPassword: (email: string) => Promise<void>;
@@ -72,9 +72,10 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const [loading, setLoading] = useState(true);
 
   async function proceedWithGooglePopup() {
-    console.log('lets go google');
+    console.log('lets go google', loading);
     const myAuth = getAuth();
     const result = await signInWithPopup(myAuth, new GoogleAuthProvider())
+    setLoading
     console.log(result)
   }
 
@@ -84,28 +85,28 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
    * @param email - user provided email string
    * @param password - user provided password string
    */
-  async function signup(
-    email: string,
-    password: string,
-    displayName: string
-  ): Promise<void> {
-    return console.log("signup");
-    // try {
-    //   const userCredential = await createUserWithEmailAndPassword(auth, email, password);  //Firebase Auth
-    //   const user = userCredential.user;
+  // async function signup(
+  //   email: string,
+  //   password: string,
+  //   displayName: string
+  // ): Promise<void> {
+  //   return console.log("signup");
+  //   // try {
+  //   //   const userCredential = await createUserWithEmailAndPassword(auth, email, password);  //Firebase Auth
+  //   //   const user = userCredential.user;
 
-    //   const firebaseService = new FirebaseService(); //Firestore User doc creation
-    //   await firebaseService.createUser(email, user.uid, displayName);
-    // } catch (error: unknown) {
-    //   if (error instanceof Error) {
-    //     // Use the specific Error type
-    //     console.error('Sign-up error:', error.message);
-    //   } else {
-    //     // Fallback for other types of errors
-    //     console.error('An error occurred during sign-up:', error);
-    //   }
-    // }
-  }
+  //   //   const firebaseService = new FirebaseService(); //Firestore User doc creation
+  //   //   await firebaseService.createUser(email, user.uid, displayName);
+  //   // } catch (error: unknown) {
+  //   //   if (error instanceof Error) {
+  //   //     // Use the specific Error type
+  //   //     console.error('Sign-up error:', error.message);
+  //   //   } else {
+  //   //     // Fallback for other types of errors
+  //   //     console.error('An error occurred during sign-up:', error);
+  //   //   }
+  //   // }
+  // }
 
   /**
    * Login Process from Firebase
@@ -119,7 +120,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('user recieved',user);
-      return user
+      setLoading(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Use the specific Error type
@@ -181,7 +182,7 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const value: AuthContextProps = {
     currentUser, // Current authenticated user information
     login, // Function to handle user login (not shown in the provided code)
-    signup, // Function to handle user signup (not shown in the provided code)
+    // signup, // Function to handle user signup (not shown in the provided code)
     logout, // Function to handle user logout (not shown in the provided code)
     proceedWithGooglePopup,
     // Additional functions (e.g., resetPassword, updateEmail, updatePassword) may be added as needed
