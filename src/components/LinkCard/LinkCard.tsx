@@ -36,7 +36,7 @@ const LinkCard : React.FC<LinkCardProps> = ({ userLink }) => {
         </Typography>
       </CardContent>
       <CardActions>
-      <Button variant="outlined" startIcon={<DeleteIcon />}>
+      <Button size='small' variant="outlined" startIcon={<DeleteIcon />}>
   Delete
 </Button>
       </CardActions>

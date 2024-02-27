@@ -6,7 +6,8 @@ import {
   LinkInputForm,
   CampaignCard,
   BasicModal,
-  LinkCard
+  LinkCard, 
+  LinkInputDialog
 } from ".";
 import SimpleSnackbar from "./SnackBar";
 
@@ -17,6 +18,8 @@ const StoryBoard: React.FC = () => {
   return (
     <>
       <h1>Link Reach</h1>
+      <h2>Link Input Modal</h2>
+      <LinkInputDialog />
       <h2> Link Card</h2>
       <LinkCard userLink={mockLinks[0]}/>
       <h2>SnackBar</h2>

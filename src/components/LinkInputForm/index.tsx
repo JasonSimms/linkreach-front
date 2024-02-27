@@ -1,3 +1,4 @@
 import LinkInputForm from "./LinkInputForm";
+import LinkInputDialog from "./LinkInputDialog";
 
-export {LinkInputForm};
+export {LinkInputForm, LinkInputDialog};

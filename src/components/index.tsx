@@ -1,5 +1,5 @@
 import { CampaignTable } from "./CampaignTable";
-import { LinkInputForm } from "./LinkInputForm";
+import { LinkInputForm, LinkInputDialog } from "./LinkInputForm";
 import { CreateCampaignForm } from "./CreateCampaignForm";
 import { CampaignCard } from "./CampaignCard";
 import { BasicModal } from "./Modal";
@@ -8,4 +8,4 @@ import { NavBar } from "./NavBar";
 import { LogInForm } from "./LoginForm";
 import { LinkCard } from "./LinkCard";
 
-export { CampaignTable, LinkInputForm, CreateCampaignForm, CampaignCard, BasicModal, ErrorPage, NavBar, LogInForm, LinkCard}
+export { CampaignTable, LinkInputForm, CreateCampaignForm, CampaignCard, BasicModal, ErrorPage, NavBar, LogInForm, LinkCard, LinkInputDialog}
