@@ -5,7 +5,7 @@
 * @campaignLinks: this is an array of links generated unique to this campaign
 */
 
-interface Campaign {
+export interface Campaign {
     id: number // first 5 in url
     campaignName: string
     campaignDescription?: string

@@ -19,8 +19,8 @@ import { useAuth } from "../../Context/AuthContext";
 
 const pages = [
   { title: "Home", destination: "/" },
+  { title: "Links", destination: "/links" , protected: true},
   { title: "StoryBoard", destination: "/storyboard" },
-  { title: "Create", destination: "/create" },
 ];
 
 interface AuthUser {
@@ -33,7 +33,6 @@ interface AuthUser {
 function NavBar() {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
-  console.log("currentUser", currentUser);
   const settings = currentUser ? [
     {
       title: "Profile",
@@ -141,6 +140,7 @@ function NavBar() {
                 <MenuItem
                   key={page.title}
                   onClick={handlePageNavigation(page.destination)}
+                  disabled={page.protected && !currentUser}
                 >
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
@@ -174,6 +174,7 @@ function NavBar() {
                 key={page.title}
                 onClick={handlePageNavigation(page.destination)}
                 sx={{ my: 2, color: "white", display: "block" }}
+                disabled={page.protected && !currentUser}
               >
                 {page.title}
               </Button>

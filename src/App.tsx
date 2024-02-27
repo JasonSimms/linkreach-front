@@ -3,6 +3,7 @@ import "./App.css";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { ErrorPage, NavBar, LogInForm } from "./components";
 import HomeLayout from "./layouts/Home";
+import LinksLayout from "./layouts/Links";
 import Storyboard from "./components/Storyboard";
 
 import { AuthProvider,
@@ -65,8 +66,8 @@ const router = createBrowserRouter([
         element: <Storyboard />,
       },
       {
-        path: "/create",
-        element: <h1>Hello CREATE!</h1>,
+        path: "/links",
+        element: <LinksLayout />,
       },
      
     ],

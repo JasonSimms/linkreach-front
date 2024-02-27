@@ -6,13 +6,19 @@ import {
   LinkInputForm,
   CampaignCard,
   BasicModal,
+  LinkCard
 } from ".";
 import SimpleSnackbar from "./SnackBar";
+
+
+import { mockLinks } from "../Context/MockData";
 
 const StoryBoard: React.FC = () => {
   return (
     <>
       <h1>Link Reach</h1>
+      <h2> Link Card</h2>
+      <LinkCard userLink={mockLinks[0]}/>
       <h2>SnackBar</h2>
       <SimpleSnackbar />
       <h2>ALL PURPOSE MODAL</h2>

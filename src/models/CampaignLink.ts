@@ -1,4 +1,4 @@
-interface Link {    
+export interface CampaignLink {    
     id: number
     link: string
     linkName?: string

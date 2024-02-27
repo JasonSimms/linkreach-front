@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Paper, Typography } from "@mui/material";
+import { CampaignTable } from "../components";
 
 const HomeLayout: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const HomeLayout: React.FC = () => {
           </Typography>
         </Paper>
       </Grid>
+      <CampaignTable />
     </Grid>
   );
 };

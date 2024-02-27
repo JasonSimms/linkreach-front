@@ -12,7 +12,7 @@ import {
   TextField,
   Button,
   TextareaAutosize,
-  Box,
+  Box, Paper
 } from "@mui/material";
 
 const LinkInputForm = () => {
@@ -31,7 +31,7 @@ const LinkInputForm = () => {
     };
 
   return (
-    <Box sx={{ boxShadow: 3, padding: "5px" }}>
+    <Paper elevation={3}>
       <Container maxWidth="sm">
         <form onSubmit={handleSubmit}>
           <TextField
@@ -66,7 +66,7 @@ const LinkInputForm = () => {
           </Box>
         </form>
       </Container>
-    </Box>
+    </Paper>
   );
 };
 

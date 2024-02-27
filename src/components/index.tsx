@@ -6,5 +6,6 @@ import { BasicModal } from "./Modal";
 import {ErrorPage} from "./ErrorPage";
 import { NavBar } from "./NavBar";
 import { LogInForm } from "./LoginForm";
+import { LinkCard } from "./LinkCard";
 
-export { CampaignTable, LinkInputForm, CreateCampaignForm, CampaignCard, BasicModal, ErrorPage, NavBar, LogInForm}
+export { CampaignTable, LinkInputForm, CreateCampaignForm, CampaignCard, BasicModal, ErrorPage, NavBar, LogInForm, LinkCard}
