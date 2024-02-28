@@ -1,3 +1,3 @@
-import SimpleSnackbar  from  './SnackBar';
+import SimpleSnackbar from "./SnackBar";
 
 export default SimpleSnackbar;

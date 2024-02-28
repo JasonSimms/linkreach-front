@@ -5,7 +5,7 @@ import React from "react";
 import { Container, Grid } from "@mui/material";
 import { LinkCard, LinkInputDialog } from "../components";
 
-import { mockLinks } from "../Context/MockData";
+import { mockLinks } from "../context/MockData";
 
 import { UserLink } from "../models/UserLink";
 

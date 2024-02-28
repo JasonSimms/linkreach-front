@@ -1,51 +1,32 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import * as React from "react";
+import { ButtonGroup } from "@mui/material";
 
-export default function SimpleSnackbar() {
-  const [open, setOpen] = React.useState(false);
+import { SnackbarContext } from "../../context/SnackbarContext";
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+type severityType = "error" | "warning" | "info" | "success";
 
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    console.log('why event?', event, reason)
-    if (reason === 'clickaway') {
-      return;
+function SimpleSnackbar() {
+  const snackbarContext = React.useContext(SnackbarContext);
+
+  const handleClick = (message: string, severity?: severityType) => {
+    if (snackbarContext) {
+      snackbarContext.openSnackbar(message, severity);
     }
-
-    setOpen(false);
   };
 
-  const action = (
-    <React.Fragment>
-      <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
-
+  // "error" | "warning" | "info" | "success"
   return (
-    <div>
-      <Button onClick={handleClick}>Open Snackbar</Button>
-      <Snackbar
-        open={open}
-        autoHideDuration={500}
-        onClose={handleClose}
-        message="Note archived"
-        action={action}
-      />
-    </div>
+    <ButtonGroup>
+      <button onClick={() => handleClick("hello")}>Say hello</button>;
+      <button onClick={() => handleClick("hello", "error")}>Error!</button>;
+      <button onClick={() => handleClick("hello", "warning")}>Warning</button>;
+      <button onClick={() => handleClick("hello", "success")}>Success</button>;
+      <button onClick={() => handleClick("hello", "info")}>
+        Info (default)
+      </button>
+      ;
+    </ButtonGroup>
   );
 }
+
+export default SimpleSnackbar;

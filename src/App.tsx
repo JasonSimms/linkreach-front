@@ -10,7 +10,9 @@ import Storyboard from "./components/Storyboard";
 import {
   AuthProvider,
   // useAuth
-} from "./Context/AuthContext";
+} from "./context/AuthContext";
+
+import { SnackbarProvider } from "./context/SnackbarContext";
 
 import {
   createBrowserRouter,
@@ -93,9 +95,11 @@ function App() {
   return (
     <React.StrictMode>
       <StyledEngineProvider injectFirst>
-        <AuthProvider>
-          <RouterProvider router={router} />
-        </AuthProvider>
+        <SnackbarProvider>
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
+        </SnackbarProvider>
       </StyledEngineProvider>
     </React.StrictMode>
   );

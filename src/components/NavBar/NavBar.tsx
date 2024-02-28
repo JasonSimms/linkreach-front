@@ -15,7 +15,7 @@ import TroubleshootIcon from "@mui/icons-material/Troubleshoot";
 
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "../../Context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const pages = [
   { title: "Home", destination: "/" },

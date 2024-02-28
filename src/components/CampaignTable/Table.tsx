@@ -1,28 +1,27 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { AvatarGroup } from '@mui/material';
-import LinkAvatar from './LinkAvatar';
-
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { AvatarGroup } from "@mui/material";
+import LinkAvatar from "./LinkAvatar";
 
 //Data Mocking  TODO INSERT CONTEXT HERE
 function createData(
   campaignName: string,
-  sent: string[],  //TODO each link should be an object with more info including click history.
-  visitors: number,  //derived from sent click history
-  explored: number,  //derived from sent click history
-  lastClick: string,  //derived from sent click history
+  sent: string[], //TODO each link should be an object with more info including click history.
+  visitors: number, //derived from sent click history
+  explored: number, //derived from sent click history
+  lastClick: string //derived from sent click history
 ) {
   return {
     campaignName,
@@ -32,36 +31,36 @@ function createData(
     lastClick,
     history: [
       {
-        date: '2020-01-05',
-        ip: '11091700',
+        date: "2020-01-05",
+        ip: "11091700",
         link: "Project 3",
       },
       {
-        date: '2020-01-02',
-        ip: '11091723',
-        link: 'GITHUB',
+        date: "2020-01-02",
+        ip: "11091723",
+        link: "GITHUB",
       },
     ],
   };
 }
 
-const myLinks = ['github','myApp1', 'project2', 'demo', 'myApp2']
+const myLinks = ["github", "myApp1", "project2", "demo", "myApp2"];
 
 const rows = [
-  createData('SAP - App Developer #1567', myLinks,  2, 24, "01.01.23"),
-  createData('Telekom - Front End Developer II', myLinks, 1, 13,  "01.18.24"),
-  createData('Check24 - Back End Dev', myLinks, 5, 24, "02.02.24"),
-  createData('Amazon.de - Back End Engineer', myLinks, 3, 67,"02.01.24"),
-  createData('Haribo - Taste Tester', myLinks, 1, 49, "12.25.23"),
+  createData("SAP - App Developer #1567", myLinks, 2, 24, "01.01.23"),
+  createData("Telekom - Front End Developer II", myLinks, 1, 13, "01.18.24"),
+  createData("Check24 - Back End Dev", myLinks, 5, 24, "02.02.24"),
+  createData("Amazon.de - Back End Engineer", myLinks, 3, 67, "02.01.24"),
+  createData("Haribo - Taste Tester", myLinks, 1, 49, "12.25.23"),
 ];
 
 //Avatar Group Construction
 function createAvatars(clicked: string[]) {
-  const avatars =  clicked.map((el) => {
-      return (LinkAvatar({link: el}))
-  })
-  
-      return (<AvatarGroup max={4}>{avatars}</AvatarGroup>)
+  const avatars = clicked.map((el) => {
+    return LinkAvatar({ link: el });
+  });
+
+  return <AvatarGroup max={4}>{avatars}</AvatarGroup>;
 }
 
 //Row Construction
@@ -71,7 +70,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -96,7 +95,7 @@ function Row(props: { row: ReturnType<typeof createData> }) {
               <Typography variant="h6" gutterBottom component="div">
                 History
               </Typography>
-              <Table size="small" aria-label="purchases">
+              <Table size="small" aria-label="history">
                 <TableHead>
                   <TableRow>
                     <TableCell>Date</TableCell>
@@ -124,11 +123,10 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   );
 }
 
-
 export default function CampaignTable() {
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
+      <Table aria-label="campaign table" sx={{ minWidth: 650 }}>
         <TableHead>
           <TableRow>
             <TableCell />

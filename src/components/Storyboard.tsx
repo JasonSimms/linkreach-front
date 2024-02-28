@@ -6,13 +6,12 @@ import {
   LinkInputForm,
   CampaignCard,
   BasicModal,
-  LinkCard, 
-  LinkInputDialog
+  LinkCard,
+  LinkInputDialog,
 } from ".";
 import SimpleSnackbar from "./SnackBar";
 
-
-import { mockLinks } from "../Context/MockData";
+import { mockLinks } from "../context/MockData";
 
 const StoryBoard: React.FC = () => {
   return (
@@ -21,7 +20,7 @@ const StoryBoard: React.FC = () => {
       <h2>Link Input Modal</h2>
       <LinkInputDialog />
       <h2> Link Card</h2>
-      <LinkCard userLink={mockLinks[0]}/>
+      <LinkCard userLink={mockLinks[0]} />
       <h2>SnackBar</h2>
       <SimpleSnackbar />
       <h2>ALL PURPOSE MODAL</h2>
@@ -38,4 +37,4 @@ const StoryBoard: React.FC = () => {
   );
 };
 
-export default StoryBoard
+export default StoryBoard;

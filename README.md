@@ -19,7 +19,8 @@ Every time someone clicks on your LinkReach URL, the visit is logged along with 
 - [x] Build modal editing of existing content
 - [x] Add Auth
 - [x] Style into a flow w/ Auth add navbar
-- [ ] Build Error handling in modal or toast
+- [x] Build Error handling in Snackbar
+- [ ] Implement Context
 - [ ] Add Visualization Graph
 - [ ] Add backend or mock SQL
 
