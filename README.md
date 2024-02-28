@@ -4,9 +4,11 @@
 
 This is a front end react UI for interacting with my-bitly Python API [My Bitly API](https://github.com/JasonSimms/my-bitly)
 
-Problem : You have mass emailed your CV out and want to know if anyone is looing at your projects or CV.
+"Challenge: You've sent out your CV to numerous potential employers and you're left wondering if anyone is actually viewing your projects or CV.
 
-Solution: LinkReach generates unique shortened URL's for you to use as Hyperlinks in email or embedded in .PDF. The unique urls are redirected and capture provided tracker data. This can be the name of who you sent it or any string. When LinkReach gets a request it logs the visit and any attached tags for you to view and the visitor gets immediately redirected to your desired link.
+Solution: Enter LinkReach - your personal tool for tracking engagement. With LinkReach, you can generate unique, shortened URLs to use as hyperlinks in your emails or embedded within your PDFs. These aren't just any URLs - they're smart URLs. They redirect your visitors while simultaneously capturing valuable tracking data. You can even personalize these URLs with tags such as the recipient's name or any other identifier.
+
+Every time someone clicks on your LinkReach URL, the visit is logged along with any attached tags. You get real-time insights into who's engaging with your content, while your visitor is seamlessly redirected to your desired link. With LinkReach, you're no longer in the dark about who's viewing your CV or projects. Start making informed follow-ups today with LinkReach."
 
 ### TODO
 
@@ -27,7 +29,7 @@ This is a vite project.
 
 ## Local Development
 
-This project is currently deployed on Firebase with firebase Auth. It may not have fallback if AuthContext does not configure correctly with a Firebase project .env. However, Landing('/') and Storybook ('/storybook') pages should be accessable.
+This project is currently deployed on Firebase with Auth. It may not have fallback if AuthContext does not configure correctly with a Firebase project .env. However, Landing('/') and Storybook ('/storybook') pages should be accessable.
 
 Follow these steps to set up the project for local development:
 
