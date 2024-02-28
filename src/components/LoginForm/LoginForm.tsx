@@ -49,14 +49,13 @@ export default function LoginInForm() {
   const handleGoogle = async (e: React.MouseEvent) => {
     e.preventDefault();
     await proceedWithGooglePopup();
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   const handleLogin = async (email: string, password: string) => {
-    console.log("lets handle login", email, password);
     try {
       await login(email, password);
-      navigate("/home");
+      navigate("/dashboard");
       // Handle successful login
     } catch (error) {
       // Handle login errors

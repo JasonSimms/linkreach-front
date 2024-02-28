@@ -3,8 +3,11 @@ import { Box, Typography, Button, Grid } from "@mui/material";
 import { CampaignTable } from "../components";
 //import watchdog from public folder
 import watchdog from "../assets/watch_doge_by_greytonano_d7jsw62-375w-2x.jpg";
+import { useNavigate } from "react-router-dom";
 
 function LandingLayout() {
+  const navigate = useNavigate();
+
   const bannerStyles = {
     fontFamily: '"Link Sans", "Arial Black", Arial, sans-serif',
     fontSize: "clamp(32px, 8.5vmin, 88px)",
@@ -45,7 +48,12 @@ function LandingLayout() {
           </Typography>
           <br />
 
-          <Button size="large" variant="contained" color="secondary">
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/dashboard")}
+          >
             Get Started!
           </Button>
         </Grid>

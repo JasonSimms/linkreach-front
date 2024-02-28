@@ -7,10 +7,7 @@ import LinksLayout from "./layouts/Links";
 import LandingLayout from "./layouts/Landing";
 import Storyboard from "./components/Storyboard";
 
-import {
-  AuthProvider,
-  // useAuth
-} from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
 import { SnackbarProvider } from "./context/SnackbarContext";
 import { AppDataProvider } from "./context/DataContext";
@@ -20,32 +17,24 @@ import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
-  // useLocation,
-  // Navigate,
+  useLocation,
+  useNavigate,
 } from "react-router-dom";
+import HomeLayout from "./layouts/Home";
 
-// import { AuthProvider } from "./contexts/AuthContext";
-
+//Redirect to /login when protected routes are accessed.
 const NavbarWrapper = () => {
-  // const location = useLocation();
-  // const { currentUser } = useAuth();
+  const location = useLocation();
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
-  // if (currentUser) {
-  //   return (
-  //     <>
-  //       <NavBar />
-  //       <Outlet />
-  //     </>
-  //   );
-  // } else {
-  //   console.log('location', location)
-  //   return (
-  //     <>
-  //       <NavBar />
+  React.useEffect(() => {
+    const protectedRoutes = ["/dashboard", "/links"];
+    if (!currentUser && protectedRoutes.includes(location.pathname)) {
+      navigate("/login");
+    }
+  }, [currentUser, location.pathname, navigate]);
 
-  //     </>
-  //   )
-  // }
   return (
     <>
       <NavBar />
@@ -64,8 +53,8 @@ const router = createBrowserRouter([
         element: <LandingLayout />,
       },
       {
-        path: "/home",
-        element: <LandingLayout />,
+        path: "/dashboard",
+        element: <HomeLayout />,
       },
       {
         path: "/storyboard",

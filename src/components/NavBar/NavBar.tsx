@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const pages = [
-  { title: "Home", destination: "/" },
+  { title: "Dashboard", destination: "/dashboard", protected: true },
   { title: "Links", destination: "/links", protected: true },
   { title: "StoryBoard", destination: "/storyboard" },
 ];
@@ -53,7 +53,7 @@ function NavBar() {
           title: "Logout",
           action: () => {
             logout();
-            navigate("/home");
+            navigate("/");
           },
         },
       ]

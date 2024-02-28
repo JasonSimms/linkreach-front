@@ -1,20 +1,13 @@
 /*
-* A campaign is an individual application Group.  
-* IE user has submitted a resume to 1 employer with the following links
-* 
-* @campaignLinks: this is an array of links generated unique to this campaign
-*/
+ * A campaign is an individual application Group.
+ *
+ */
 
 export interface Campaign {
-    id: number // first 5 in url
-    campaignName: string
-    campaignDescription?: string
-    campaignImage?: string
-    campaignIcon?: string
-    campaignLinks?: string[] // 
-    clicked?: string[]
-    reach: number
-    lastClick: string
-    createdAt: string
-    updatedAt: string
+  id: string; //Unique identifier for the campaign.
+  userId: string; //Reference to the user who created the campaign.
+  name: string; //The name of the campaign.
+  campaignLinkIds: string[]; //To store the shortened URLs created for each campaign.
+  createdAt?: string;
+  updatedAt?: string;
 }
