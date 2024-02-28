@@ -111,8 +111,7 @@ function NavBar() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -121,6 +120,7 @@ function NavBar() {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              userSelect: "none",
             }}
           >
             LinkReach
@@ -172,8 +172,7 @@ function NavBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            // href=
+            onClick={() => navigate("/")}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

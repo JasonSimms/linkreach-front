@@ -61,22 +61,15 @@ export function useAuth(): AuthContextProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
-  const dummyUser = {
-    uid: "myUID",
-    email: "dumbEmail",
-    displayName: "displayName",
-    photoUrl: "photoURL",
-  };
-  const [currentUser, setCurrentUser] = useState<AuthUser | null>(dummyUser);
+ 
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
 
   const [loading, setLoading] = useState(true);
 
   async function proceedWithGooglePopup() {
-    console.log('lets go google', loading);
     const myAuth = getAuth();
-    const result = await signInWithPopup(myAuth, new GoogleAuthProvider())
-    setLoading
-    console.log(result)
+    await signInWithPopup(myAuth, new GoogleAuthProvider())
+    setLoading(false);
   }
 
   /**
@@ -189,5 +182,5 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   };
 
   // Provide the authentication context to its children
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

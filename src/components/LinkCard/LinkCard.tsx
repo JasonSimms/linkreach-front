@@ -17,7 +17,7 @@ interface LinkCardProps {
 
 const LinkCard: React.FC<LinkCardProps> = ({ userLink }) => {
   return (
-    <Card sx={{ minWidth: 275, bgcolor: "rgba(255, 255, 255, 0.9)" }}>
+    <Card sx={{ bgcolor: "rgba(255, 255, 255, 0.9)" }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {userLink.nickname}
