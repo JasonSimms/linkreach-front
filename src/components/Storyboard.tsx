@@ -12,11 +12,29 @@ import {
 import SimpleSnackbar from "./SnackBar";
 
 import { mockLinks } from "../context/MockData";
+import { useUIContext } from "../context/UIContext";
+
+//SETUP UI SETTINGS CONTEXT AND CONSUME  TODO move this to user settings
+const ToggleDarkMode = () => {
+  const { dark, toggleDark } = useUIContext();
+  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    toggleDark();
+  };
+  return (
+    <>
+      <h1>{dark ? "🌙" : "🌞"}</h1>
+      <button onClick={handleOnClick}>Toggle dark mode</button>
+    </>
+  );
+};
 
 const StoryBoard: React.FC = () => {
   return (
     <>
       <h1>Link Reach</h1>
+      <h2>UI CONTEXT SETUP</h2>
+      <ToggleDarkMode />
       <h2>Link Input Modal</h2>
       <LinkInputDialog />
       <h2> Link Card</h2>

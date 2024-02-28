@@ -1,37 +1,39 @@
 //path: src/components/LinkInputForm/LinkInputDialog.tsx
-// This component replaces the Link input form 
+// This component replaces the Link input form
 // Dialog box is a better user experience for adding links
 
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import TextField from '@mui/material/TextField';
-import { TransitionProps } from '@mui/material/transitions';
-
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import TextField from "@mui/material/TextField";
+import { TransitionProps } from "@mui/material/transitions";
 
 type FormData = {
-    url: string;
-    nickname: string;
-    // notes: string;
-    }
+  url: string;
+  nickname: string;
+  // notes: string;
+};
 
 const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & {
-        children: React.ReactElement<React.HTMLAttributes<HTMLElement>>;
-    },
-    ref: React.Ref<unknown>,
+  props: TransitionProps & {
+    children: React.ReactElement<React.HTMLAttributes<HTMLElement>>;
+  },
+  ref: React.Ref<unknown>
 ) {
-    return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AlertDialogSlide = () => {
+const AlertDialogSlide = ({ addUserLink }) => {
   const [open, setOpen] = React.useState(false);
-  const [formData, setFormData] = React.useState({url:"", nickname: ""} as FormData);
+  const [formData, setFormData] = React.useState({
+    url: "",
+    nickname: "",
+  } as FormData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -42,35 +44,42 @@ const AlertDialogSlide = () => {
   };
 
   const handleClose = () => {
-    setFormData({url:"", nickname: ""});
+    setFormData({ url: "", nickname: "" });
     setOpen(false);
   };
 
   const handleSubmit = () => {
-    console.log('TODO handleSubmit', formData)  //TODO handle submit and add Alert
+    const { url, nickname } = formData;
+    addUserLink(url, nickname);
     handleClose();
-  }
+  };
 
-  const isInputValid =(input : FormData) => {
+  const isInputValid = (input: FormData) => {
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/; // Simple URL validation regex
-  
+
     if (!input.nickname || input.nickname.length < 1) {
       return false;
     }
-  
+
     if (!input.url || !urlRegex.test(input.url)) {
       return false;
     }
-  
+
     return true;
-  }
+  };
 
   return (
     <React.Fragment>
-      <Button fullWidth variant="contained" color="secondary" sx={{borderRadius: 99}}onClick={handleClickOpen}>
+      <Button
+        fullWidth
+        variant="contained"
+        color="secondary"
+        sx={{ borderRadius: 99 }}
+        onClick={handleClickOpen}
+      >
         + Add Link
       </Button>
-      <br/>
+      <br />
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -81,8 +90,10 @@ const AlertDialogSlide = () => {
         <DialogTitle>{"Add to your link collection"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Visitors will be redirected to the URL you provide below. <br/><br/>
-            *Note - generated hyperlinks will be anonymized and appear as linkreach.com/5324kjdf
+            Visitors will be redirected to the URL you provide below. <br />
+            <br />
+            *Note - generated hyperlinks will be anonymized and appear as
+            linkreach.com/5324kjdf
           </DialogContentText>
           <TextField
             label="URL"
@@ -107,11 +118,13 @@ const AlertDialogSlide = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Discard</Button>
-          <Button disabled={!isInputValid(formData)} onClick={handleSubmit}>Add</Button>
+          <Button disabled={!isInputValid(formData)} onClick={handleSubmit}>
+            Add
+          </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
   );
-}
+};
 
 export default AlertDialogSlide;

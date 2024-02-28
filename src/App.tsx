@@ -13,6 +13,8 @@ import {
 } from "./context/AuthContext";
 
 import { SnackbarProvider } from "./context/SnackbarContext";
+import { AppDataProvider } from "./context/DataContext";
+import { UIProvider } from "./context/UIContext";
 
 import {
   createBrowserRouter,
@@ -63,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <HomeLayout />,
+        element: <LandingLayout />,
       },
       {
         path: "/storyboard",
@@ -97,7 +99,11 @@ function App() {
       <StyledEngineProvider injectFirst>
         <SnackbarProvider>
           <AuthProvider>
-            <RouterProvider router={router} />
+            <AppDataProvider>
+              <UIProvider>
+                <RouterProvider router={router} />
+              </UIProvider>
+            </AppDataProvider>
           </AuthProvider>
         </SnackbarProvider>
       </StyledEngineProvider>

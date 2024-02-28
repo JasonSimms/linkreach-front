@@ -13,9 +13,10 @@ import { UserLink } from "../../models/UserLink";
 
 interface LinkCardProps {
   userLink: UserLink;
+  deleteUserLink: (id: string) => void | undefined;
 }
 
-const LinkCard: React.FC<LinkCardProps> = ({ userLink }) => {
+const LinkCard: React.FC<LinkCardProps> = ({ userLink, deleteUserLink }) => {
   return (
     <Card sx={{ bgcolor: "rgba(255, 255, 255, 0.9)" }}>
       <CardContent>
@@ -33,7 +34,12 @@ const LinkCard: React.FC<LinkCardProps> = ({ userLink }) => {
         <Typography variant="body2">{userLink.notes}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" variant="outlined" startIcon={<DeleteIcon />}>
+        <Button
+          onClick={() => deleteUserLink(userLink.id)}
+          size="small"
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+        >
           Delete
         </Button>
       </CardActions>
