@@ -20,12 +20,7 @@ import {
   // getAdditionalUserInfo,
 } from "firebase/auth";
 
-interface AuthUser {
-  uid?: string;
-  email: string;
-  displayName?: string;
-  photoUrl?: string;
-}
+import { AuthUser } from "../models/AuthUser";
 
 // Context for the Auth Provider
 interface AuthContextProps {
@@ -61,14 +56,13 @@ export function useAuth(): AuthContextProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
- 
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
 
   const [loading, setLoading] = useState(true);
 
   async function proceedWithGooglePopup() {
     const myAuth = getAuth();
-    await signInWithPopup(myAuth, new GoogleAuthProvider())
+    await signInWithPopup(myAuth, new GoogleAuthProvider());
     setLoading(false);
   }
 
@@ -108,20 +102,24 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
    * @param password - user provided password string
    */
   async function login(email: string, password: string): Promise<any> {
-    console.log("login",email, password);
+    console.log("login", email, password);
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
-      console.log('user recieved',user);
+      console.log("user recieved", user);
       setLoading(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Use the specific Error type
-        console.error('Sign-up error:', error.message)
+        console.error("Sign-up error:", error.message);
         return;
       } else {
         // Fallback for other types of errors
-        console.error('An error occurred during sign-up:', error);
+        console.error("An error occurred during sign-up:", error);
         return;
       }
     }
@@ -182,5 +180,9 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   };
 
   // Provide the authentication context to its children
-  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }

@@ -23,13 +23,6 @@ const pages = [
   { title: "StoryBoard", destination: "/storyboard" },
 ];
 
-// interface AuthUser {
-//   uid?: string;
-//   email: string;
-//   displayName?: string;
-//   photoUrl?: string;
-// }
-
 const navBarStyle = {
   backgroundColor: "rgba(0, 0, 0, 0.8)",
   // backgroundColor: 'primary.success',
@@ -205,9 +198,10 @@ function NavBar() {
                 <Avatar
                   alt={currentUser?.email}
                   src={
-                    currentUser?.photoUrl || currentUser
-                      ? "https://img.kbhgames.com/2020/02/Dogecoin-Miner.jpg"
-                      : ""
+                    !currentUser
+                      ? ""
+                      : currentUser?.photoUrl ||
+                        "https://img.kbhgames.com/2020/02/Dogecoin-Miner.jpg"
                   }
                 />{" "}
               </IconButton>
