@@ -30,12 +30,15 @@ const ToggleDarkMode = () => {
 };
 
 //TEST Backend functions and pass authtoken.
-const BackendFoo = () => {
+const BackendFoo = (route: string, method: string) => {
   const [message, setMessage] = React.useState("");
 
   let token = "";
   const auth = getAuth();
   const user = auth.currentUser;
+  console.log("user", user?.uid);
+  const info = user?.providerData[0];
+  console.log("info", info);
 
   if (user) {
     user
@@ -51,15 +54,31 @@ const BackendFoo = () => {
 
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const target = "http://127.0.0.1:5001/link-reach/us-central1/test2";
+    // const target = "http://127.0.0.1:5001/link-reach/us-central1/test2";
+    const target = "http://127.0.0.1:5000/" + route;
     fetch(target, {
-      method: "POST",
+      method: method,
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + token,
       },
-      body: JSON.stringify({ token: "test" }),
-    }).then((res) => console.log(res));
+      body:
+        method === "get"
+          ? undefined
+          : JSON.stringify({ token: "test", name: "testName", url: "testUrl" }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) throw res.error;
+        console.log("what res?", res);
+        setMessage(JSON.stringify(res));
+      })
+      .catch((err) => {
+        console.error("yikes");
+        console.error(err);
+        console.log("?");
+        // setMessage(err.json().message);
+      });
     // .then((data) => console.log(data));
   };
   return (
@@ -74,8 +93,10 @@ const StoryBoard: React.FC = () => {
   return (
     <>
       <h1>Link Reach</h1>
-      <h2>Backend Foo</h2>
-      <BackendFoo />
+      <h2>My Bitly Backend Foo</h2>
+      {BackendFoo("/userlink", "post")}
+      {BackendFoo("/userlink", "get")}
+
       <h2>UI CONTEXT SETUP</h2>
       <ToggleDarkMode />
       <h2>Link Input Modal</h2>

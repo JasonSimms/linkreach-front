@@ -1,5 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/AuthContext";
+import { createUser } from "../../services/ApiServices";
+import { SnackbarContext } from "../../context/SnackbarContext";
 
 import {
   TextField,
@@ -36,10 +38,11 @@ const blobAnimation = keyframes`
  }
 `;
 
-export default function LoginInForm() {
+export default function SignUpForm() {
   // Get the navigate function from react-router-dom
+  const snackbarContext = React.useContext(SnackbarContext);
   const navigate = useNavigate();
-  const { login, proceedWithGooglePopup } = useAuth();
+  const { signup, proceedWithGooglePopup } = useAuth();
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -52,19 +55,23 @@ export default function LoginInForm() {
     navigate("/dashboard");
   };
 
-  const handleLogin = async (email: string, password: string) => {
+  const handleSignup = async (email: string, password: string) => {
     try {
-      await login(email, password);
+      const newAuthUser = await signup(email, password);
+      if (!newAuthUser) throw new Error("Error signing up");
+      await createUser(); //use info is pulled fresh to provide token;
       navigate("/dashboard");
       // Handle successful login
     } catch (error) {
       // Handle login errors
+      snackbarContext?.openSnackbar(error as Error, "error");
+      console.error("Error signing up", error);
     }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleLogin(email, password); //TODO Alert on error
+    handleSignup(email, password); //TODO Alert on error
   };
 
   return (
@@ -97,7 +104,7 @@ export default function LoginInForm() {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign Up
         </Typography>
         <TextField
           margin="normal"
@@ -131,7 +138,7 @@ export default function LoginInForm() {
           name="login"
           disabled={!isFormValid}
         >
-          login
+          sign up
         </Button>
         <Typography variant="h5" gutterBottom>
           OR
@@ -146,15 +153,6 @@ export default function LoginInForm() {
         >
           Proceed with Google
         </Button>
-        <Button
-          fullWidth
-          variant="contained"
-          sx={{ mt: 0, mb: 2, borderRadius: 64 }}
-          onClick={() => handleLogin("max@gmail.com", "maxPass")}
-          color={"success"}
-        >
-          Sign in as Max Mustermann (DEMO)
-        </Button>
         <Grid container>
           <Grid item xs>
             <Link
@@ -166,8 +164,8 @@ export default function LoginInForm() {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="/signup" variant="body2">
-              {"Don't have an account? Sign Up"}
+            <Link href="/login" variant="body2">
+              {"Oh you do have an account? Sign In"}
             </Link>
           </Grid>
         </Grid>

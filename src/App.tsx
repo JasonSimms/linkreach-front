@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./App.css";
 import { StyledEngineProvider } from "@mui/material/styles";
-import { ErrorPage, NavBar, LogInForm } from "./components";
+import { ErrorPage, NavBar, LogInForm, SignUpForm } from "./components";
 // import HomeLayout from "./layouts/Home";
 import LinksLayout from "./layouts/Links";
 import LandingLayout from "./layouts/Landing";
@@ -70,6 +70,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LogInForm />,
+  },
+  {
+    path: "/signup",
+    element: <SignUpForm />,
   },
   // {
   //   path: "/help",

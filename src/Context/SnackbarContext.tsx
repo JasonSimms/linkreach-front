@@ -9,7 +9,7 @@ import CloseIcon from "@mui/icons-material/Close";
 type severityType = "error" | "warning" | "info" | "success" | undefined;
 
 interface SnackbarContextProps {
-  openSnackbar: (message: string, severity: severityType) => void;
+  openSnackbar: (message: string | Error, severity: severityType) => void;
   // closeSnackbar: () => void;
 }
 
@@ -38,7 +38,10 @@ export function SnackbarProvider({
     severity: "info",
   });
 
-  const openSnackbar = (message: string, severity?: severityType) => {
+  const openSnackbar = (message: string | Error, severity?: severityType) => {
+    if (message instanceof Error) {
+      message = message.message;
+    }
     setState({
       open: true,
       message: message,
