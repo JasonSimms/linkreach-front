@@ -9,8 +9,7 @@ import { LinkCard, LinkInputDialog } from "../components";
 import { useAppDataContext } from "../context/DataContext";
 
 const LinksLayout: React.FC = () => {
-  const { userLinks, addUserLink, updateUserLink, deleteUserLink } =
-    useAppDataContext();
+  const { userLinks, addUserLink, deleteUserLink } = useAppDataContext();
 
   const linkCards = userLinks.map((el) => (
     <Grid item xs={12} sm={6} key={el.id}>
@@ -26,7 +25,7 @@ const LinksLayout: React.FC = () => {
     <Container
       sx={{ maxWidth: "100vw", width: "100%", paddingLeft: 0, paddingRight: 0 }}
     >
-      <LinkInputDialog addUserLink={addUserLink} />
+      <LinkInputDialog addUserLink={addUserLink || (() => {})} />
       <Grid
         container
         // direction="column"

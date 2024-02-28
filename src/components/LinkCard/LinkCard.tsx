@@ -13,7 +13,7 @@ import { UserLink } from "../../models/UserLink";
 
 interface LinkCardProps {
   userLink: UserLink;
-  deleteUserLink: (id: string) => void | undefined;
+  deleteUserLink: (id: string) => void;
 }
 
 const LinkCard: React.FC<LinkCardProps> = ({ userLink, deleteUserLink }) => {

@@ -17,9 +17,9 @@ import { useUIContext } from "../context/UIContext";
 //SETUP UI SETTINGS CONTEXT AND CONSUME  TODO move this to user settings
 const ToggleDarkMode = () => {
   const { dark, toggleDark } = useUIContext();
-  const handleOnClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    toggleDark();
+    toggleDark ? toggleDark() : null;
   };
   return (
     <>
@@ -36,9 +36,12 @@ const StoryBoard: React.FC = () => {
       <h2>UI CONTEXT SETUP</h2>
       <ToggleDarkMode />
       <h2>Link Input Modal</h2>
-      <LinkInputDialog />
+      <LinkInputDialog addUserLink={() => console.log("?")} />
       <h2> Link Card</h2>
-      <LinkCard userLink={mockLinks[0]} />
+      <LinkCard
+        userLink={mockLinks[0]}
+        deleteUserLink={() => console.log("?")}
+      />
       <h2>SnackBar</h2>
       <SimpleSnackbar />
       <h2>ALL PURPOSE MODAL</h2>

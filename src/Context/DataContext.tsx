@@ -3,13 +3,6 @@ import { createContext, useState, useContext } from "react";
 import { mockLinks } from "./MockData";
 import { UserLink } from "../models/UserLink";
 
-const mockNewLink = {
-  id: "link5",
-  nickname: "myApp5",
-  url: "https://github.com/JasonSimms/5y",
-  notes: "none5",
-}; //TODO REMOVE
-
 const createMockLink = (url: string, nickname: string) => {
   return {
     url,
@@ -22,8 +15,12 @@ const createMockLink = (url: string, nickname: string) => {
 interface AppDataContextProps {
   userLinks: UserLink[];
   addUserLink?: (url: string, nickname: string) => void;
-  updateUserLink?: (id: string, upDatedLink: UserLink) => void;
+  // updateUserLink?: (id: string, upDatedLink: UserLink) => void;
   deleteUserLink?: (id: string) => void;
+}
+
+interface AppDataProviderProps {
+  children: React.ReactNode;
 }
 
 const defaultState = {
@@ -32,9 +29,9 @@ const defaultState = {
 
 const AppDataContext = createContext<AppDataContextProps>(defaultState);
 
-export const AppDataProvider: FC<
-  React.PropsWithChildren<Record<string, never>>
-> = ({ children }) => {
+export const AppDataProvider: React.FC<AppDataProviderProps> = ({
+  children,
+}) => {
   const [userLinks, setUserLinks] = useState(defaultState.userLinks);
 
   const addUserLink = (url: string, nickname: string) => {
@@ -43,10 +40,10 @@ export const AppDataProvider: FC<
     setUserLinks((prev) => [...prev, newLink]);
   };
 
-  const updateUserLink = (id: string, upDatedLink: UserLink) => {
-    console.log("updateUserLink", id);
-    // setUserLinks((prev) => [...prev, newUserLink]);
-  };
+  // const updateUserLink = (id: string, upDatedLink: UserLink) => {
+  //   console.log("updateUserLink", id);
+  //   // setUserLinks((prev) => [...prev, newUserLink]);
+  // };
   const deleteUserLink = (id: string) => {
     console.log("delete", id);
     setUserLinks((prev) => prev.filter((link) => link.id !== id));
@@ -56,7 +53,7 @@ export const AppDataProvider: FC<
       value={{
         userLinks,
         addUserLink,
-        updateUserLink,
+        // updateUserLink,
         deleteUserLink,
       }}
     >

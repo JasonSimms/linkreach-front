@@ -19,6 +19,10 @@ type FormData = {
   // notes: string;
 };
 
+type LinkInputDialogProps = {
+  addUserLink: (url: string, nickname: string) => void;
+};
+
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
     children: React.ReactElement<React.HTMLAttributes<HTMLElement>>;
@@ -28,7 +32,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AlertDialogSlide = ({ addUserLink }) => {
+const LinkInputDialog = ({ addUserLink }: LinkInputDialogProps) => {
   const [open, setOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({
     url: "",
@@ -127,4 +131,4 @@ const AlertDialogSlide = ({ addUserLink }) => {
   );
 };
 
-export default AlertDialogSlide;
+export default LinkInputDialog;

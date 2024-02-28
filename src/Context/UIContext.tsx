@@ -1,20 +1,13 @@
-import React, {
-  useState,
-  useEffect,
-  createContext,
-  FC,
-  useContext,
-  ReactNode,
-} from "react";
+import React, { useState, createContext, ReactNode, useContext } from "react";
 
 interface UIThemeContext {
   dark: boolean;
   toggleDark?: () => void;
 }
 
-// interface UIProviderProps {
-//   children: ReactNode;
-// }
+interface UIProviderProps {
+  children: ReactNode;
+}
 
 const defaultState = {
   dark: false,
@@ -22,9 +15,7 @@ const defaultState = {
 
 const UIContext = createContext<UIThemeContext>(defaultState);
 
-export const UIProvider: FC<React.PropsWithChildren<Record<string, never>>> = ({
-  children,
-}) => {
+export const UIProvider: React.FC<UIProviderProps> = ({ children }) => {
   const [dark, setDark] = useState(defaultState.dark);
 
   const toggleDark = () => {

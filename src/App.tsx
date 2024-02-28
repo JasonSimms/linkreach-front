@@ -2,7 +2,7 @@ import * as React from "react";
 import "./App.css";
 import { StyledEngineProvider } from "@mui/material/styles";
 import { ErrorPage, NavBar, LogInForm } from "./components";
-import HomeLayout from "./layouts/Home";
+// import HomeLayout from "./layouts/Home";
 import LinksLayout from "./layouts/Links";
 import LandingLayout from "./layouts/Landing";
 import Storyboard from "./components/Storyboard";
