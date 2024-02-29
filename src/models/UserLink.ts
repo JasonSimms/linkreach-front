@@ -8,6 +8,7 @@ export interface UserLink {
   id: string;
   url: string;
   nickname?: string;
+  creator?: string;
   notes?: string;
   linkIcon?: string;
   createdAt?: string;

@@ -57,7 +57,6 @@ export function useAuth(): AuthContextProps {
 
 export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
-
   const [loading, setLoading] = useState(true);
 
   async function proceedWithGooglePopup() {
@@ -94,10 +93,10 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
       if (error instanceof Error) {
         // Use the specific Error type
         console.error("Sign-up error:", error.message);
-        throw error;
+        return Promise.reject(error);
       } else {
         // Fallback for other types of errors
-        console.error("An error occurred during sign-up:", error);
+        return Promise.reject(new Error("An error occurred during sign-up"));
       }
     }
   }
@@ -111,13 +110,8 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
   async function login(email: string, password: string): Promise<any> {
     console.log("login", email, password);
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      console.log("user recieved", user);
+      await signInWithEmailAndPassword(auth, email, password);
+      // const user = userCredential.user;
       setLoading(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -168,6 +162,12 @@ export function AuthProvider({ children }: AuthProviderProps): JSX.Element {
             }
           : null
       );
+
+      // if (!user) {
+      //   // User is logged out, reset the DataContext
+      //   resetDataContext();
+      // }
+
       // Set loading to false once authentication state is determined
       setLoading(false);
     });

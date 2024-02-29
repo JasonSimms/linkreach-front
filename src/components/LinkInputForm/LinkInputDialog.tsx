@@ -12,6 +12,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import TextField from "@mui/material/TextField";
 import { TransitionProps } from "@mui/material/transitions";
+import { SnackbarContext } from "../../context/SnackbarContext";
+// import { UserLink } from "../../models/UserLink";
 
 type FormData = {
   url: string;
@@ -33,6 +35,8 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const LinkInputDialog = ({ addUserLink }: LinkInputDialogProps) => {
+  const snackbarContext = React.useContext(SnackbarContext);
+
   const [open, setOpen] = React.useState(false);
   const [formData, setFormData] = React.useState({
     url: "",
@@ -52,10 +56,17 @@ const LinkInputDialog = ({ addUserLink }: LinkInputDialogProps) => {
     setOpen(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const { url, nickname } = formData;
-    addUserLink(url, nickname);
-    handleClose();
+    try {
+      await addUserLink(url, nickname);
+      handleClose();
+    } catch (error) {
+      console.error(error);
+      if (snackbarContext) {
+        snackbarContext.openSnackbar(error as Error, "error");
+      }
+    }
   };
 
   const isInputValid = (input: FormData) => {
