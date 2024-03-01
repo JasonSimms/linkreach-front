@@ -20,13 +20,22 @@ Every time someone clicks on your LinkReach URL, the visit is logged along with 
 - [x] Add Auth
 - [x] Style into a flow w/ Auth add navbar
 - [x] Build Error handling in Snackbar
+- **[ ] Add backend or mock SQL**
 - [ ] Implement Context
 - [ ] Add Visualization Graph
-- [ ] Add backend or mock SQL
+
+  #### NICE TO HAVES
+
+  - [ ] Tour assistant
+  - [ ] Feedback feature
+  - [ ] UI customizations (light/dark mode)
+  - [ ] Auth Onboarding email traffic and validation
+  - [ ] Email Bot agent
+  - [ ] Telgram Bot integration
 
 # React + TypeScript + Vite + Firebase
 
-This is a vite project.
+This is a vite project hosted on Firebase. The backend is hosted and deployed separately to explore other frameworks. Currently a Flask Python API.
 
 ## Local Development
 
